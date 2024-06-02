@@ -5,6 +5,7 @@ namespace Bss\Faq\Model\Category;
 
 use Bss\Faq\Model\ResourceModel\Category\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 
@@ -16,14 +17,19 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var array|null
+     * @var array
      */
-    protected $loadedData;
+    private $loadedData;
 
     /**
      * @var DataPersistorInterface
      */
-    protected $dataPersistor;
+    private $dataPersistor;
+
+    /**
+     * @var CollectionFactory
+     */
+    public $collection;
 
     /**
      * @var StoreManagerInterface
@@ -43,9 +49,9 @@ class DataProvider extends AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        string $name,
-        string $primaryFieldName,
-        string $requestFieldName,
+        $name,
+        $primaryFieldName,
+        $requestFieldName,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
         StoreManagerInterface $storeManager,
@@ -62,16 +68,23 @@ class DataProvider extends AbstractDataProvider
      * Get data
      *
      * @return array
+     * @throws NoSuchEntityException
      */
-    public function getData(): array
+    public function getData()
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
 
         $items = $this->collection->getItems();
-        foreach ($items as $category) {
-            $this->loadedData[$category->getId()] = $category->getData();
+
+        foreach ($items as $model) {
+            $data = $model->getData();
+            if ($model->getIcon()) {
+                $data['icon'][0]['name'] = $model->getIcon();
+                $data['icon'][0]['url'] = $this->getMediaUrl() . $model->getIcon();
+            }
+            $this->loadedData[$model->getId()] = $data;
         }
 
         $data = $this->dataPersistor->get('bss_faq_category');
@@ -87,12 +100,12 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
-     * Get media URL
+     * Get media url
      *
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
-    public function getMediaUrl(): string
+    public function getMediaUrl()
     {
         $mediaUrl = $this->storeManager->getStore()
                 ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'faq/tmp/icon/';

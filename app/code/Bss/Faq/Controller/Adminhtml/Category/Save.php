@@ -67,13 +67,11 @@ class Save extends Action implements HttpPostActionInterface
         if ($data) {
             try {
                 if (isset($data['entity_id']) && !empty($data['entity_id'])) {
-                    // Update existing category
                     $model = $this->categoryRepository->getById($data['entity_id']);
                 } else {
-                    // Create new category
                     $model = $this->categoryFactory->create();
                 }
-
+                $data = $this->_filterCategoryData($data);
                 $model->setData($data);
                 $this->categoryRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('Category saved successfully.'));
@@ -96,5 +94,23 @@ class Save extends Action implements HttpPostActionInterface
         }
 
         return $resultRedirect->setPath('*/*/');
+    }
+
+    /**
+     * Filter data img
+     *
+     * @param array $rawData
+     * @return array
+     */
+    protected function _filterCategoryData(array $rawData)
+    {
+        $data = $rawData;
+        if (isset($data['icon'][0]['name'])) {
+            $data['icon'] = $data['icon'][0]['name'];
+        } else {
+            $data['icon'] = null;
+        }
+
+        return $data;
     }
 }

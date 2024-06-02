@@ -28,7 +28,7 @@ class Category extends AbstractModel implements CategoryInterface
      *
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->getData(self::ENTITY_ID);
     }
