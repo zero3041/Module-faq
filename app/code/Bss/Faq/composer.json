@@ -1,0 +1,17 @@
+{
+  "name": "bss/module-faq",
+  "version": "1.0.0",
+  "description": "Module Faqs",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Bss\\FAQ\\": ""
+    }
+  }
+}

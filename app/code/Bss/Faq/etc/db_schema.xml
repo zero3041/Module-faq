@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="faq_manage" resource="default" engine="innodb" comment="Bss FAQ category">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="int" name="view" nullable="true"  comment="Viewed"/>
+        <column xsi:type="int" name="like" nullable="true"  comment="Titled"/>
+        <column xsi:type="int" name="dislike" nullable="true"  comment="Disliked"/>
+        <column xsi:type="varchar" name="create_by" nullable="true" length="255" comment="Create By"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="true" identity="false" default="1" comment="Is Enabled"/>
+        <column xsi:type="int" name="sortorder" unsigned="true" nullable="true" identity="false" default="0" comment="Sort Order"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Modified at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="SOME_INDENTIFIER" indexType="fulltext">
+            <column name="title"/>
+        </index>
+    </table>
+    <table name="faq_category" resource="default" engine="innodb" comment="Bss FAQ category">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="manage_id" unsigned="true" nullable="false" identity="false" comment="Manage ID"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="true" identity="false" default="1" comment="Is Enabled"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Image"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FAQ_CATEGORY_ENTITY_ID_FAQ_MANAGER_ENTITY_ID" table="faq_manage"
+                    column="manage_id" referenceTable="faq_manage" referenceColumn="entity_id"/>
+    </table>
+</schema>
