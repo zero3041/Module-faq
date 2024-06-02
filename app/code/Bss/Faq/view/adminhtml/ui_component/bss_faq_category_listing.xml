@@ -95,15 +95,19 @@
         </column>
         <column name="status">
             <argument name="data" xsi:type="array">
+                <item name="sortOrder" xsi:type="number">50</item>
+                <item name="options" xsi:type="object">Bss\Faq\Ui\Component\Listing\Column\Status</item>
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
                     <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="editorType" xsi:type="string">select</item>
                         <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
+                            <item name="required-entry" xsi:type="boolean">false</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
                 </item>
             </argument>
         </column>

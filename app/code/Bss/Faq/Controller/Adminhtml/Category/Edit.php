@@ -20,7 +20,7 @@ class Edit extends \Magento\Backend\App\Action implements HttpGetActionInterface
      */
     protected $resultPageFactory;
     /**
-     * @var CategoryRepositoryInterface
+     * @var FaqRepositoryInterface
      */
     protected $categoryRepository;
 
