@@ -1,11 +1,18 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\Faq\Api\CategoryRepositoryInterface" type="Bss\Faq\Model\CategoryRepository" />
+    <preference for="Bss\Faq\Api\Data\CategoryInterface" type="Bss\Faq\Model\Category" />
+    <preference for="Bss\Faq\Api\Data\CategorySearchResultsInterface" type="Bss\Faq\Model\Category\CategorySearchResults" />
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="bss_faq_category_listing_data_source" xsi:type="string">
                     Bss\Faq\Model\ResourceModel\Category\Collection
+                </item>
+                <item name="bss_faq_faq_listing_data_source" xsi:type="string">
+                    Bss\Faq\Model\ResourceModel\Faq\Collection
                 </item>
             </argument>
         </arguments>
@@ -16,16 +23,6 @@
             <argument name="mainTable" xsi:type="string">faq_category</argument>
         </arguments>
     </virtualType>
-
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="bss_faq_faq_listing_data_source" xsi:type="string">
-                    Bss\Faq\Model\ResourceModel\Faq\Collection
-                </item>
-            </argument>
-        </arguments>
-    </type>
     <virtualType name="Bss\Faq\Model\ResourceModel\Faq\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
