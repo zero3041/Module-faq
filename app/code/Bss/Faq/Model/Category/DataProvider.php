@@ -81,6 +81,10 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $model) {
             $data = $model->getData();
             if ($model->getIcon()) {
+                if (!isset($data['icon']) || !is_array($data['icon'])) {
+                    $data['icon'] = [];
+                }
+
                 $data['icon'][0]['name'] = $model->getIcon();
                 $data['icon'][0]['url'] = $this->getMediaUrl() . $model->getIcon();
             }
