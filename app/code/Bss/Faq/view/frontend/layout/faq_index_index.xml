@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Bss_Faq::css/font-awesome.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Bss\Faq\Block\Index\Index" name="faq.search.form" template="faq_search_form.phtml" />
+            <block class="Bss\Faq\Block\Index\Index" name="faq.main" template="faq_main.phtml" />
+        </referenceContainer>
+    </body>
+</page>

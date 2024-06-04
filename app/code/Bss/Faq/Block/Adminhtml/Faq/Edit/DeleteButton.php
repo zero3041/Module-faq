@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Bss\Faq\Block\Adminhtml\Category\Edit;
+namespace Bss\Faq\Block\Adminhtml\Faq\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -22,7 +22,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         $data = [];
         if ($this->getModelId()) {
             $data = [
-                'label' => __('Delete Category'),
+                'label' => __('Delete FAQ'),
                 'class' => 'delete',
                 'on_click' => 'deleteConfirm(\'' . __(
                     'Are you sure you want to do this?'

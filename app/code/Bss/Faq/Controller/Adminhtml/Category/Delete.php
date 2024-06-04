@@ -3,61 +3,58 @@ declare(strict_types=1);
 
 namespace Bss\Faq\Controller\Adminhtml\Category;
 
-use Bss\Faq\Api\CategoryRepositoryInterface;
+use Bss\Faq\Model\CategoryRepository;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Controller\ResultInterface;
 
 /**
  * Class Delete
  *
- * Delete an item
+ * Delete category
  */
 class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     /**
-     * @var CategoryRepositoryInterface
+     * @var CategoryRepository
      */
     protected $categoryRepository;
 
     /**
-     * Function constructor
-     *
+     * Delete constructor.
      * @param Context $context
-     * @param CategoryRepositoryInterface $categoryRepository
+     * @param CategoryRepository $categoryRepository
      */
     public function __construct(
         Context $context,
-        CategoryRepositoryInterface $categoryRepository
+        CategoryRepository $categoryRepository
     ) {
-        parent::__construct($context);
         $this->categoryRepository = $categoryRepository;
+        parent::__construct($context);
     }
 
     /**
-     * Delete page
+     * Delete action
      *
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        $selectedIds = $this->getRequest()->getParam('selected');
-        if (empty($selectedIds)) {
-            $this->messageManager->addErrorMessage(__('No categories selected for deletion.'));
-            return $this->_redirect('*/*/');
-        }
-
-        try {
-            foreach ($selectedIds as $categoryId) {
-                $this->categoryRepository->deleteById($categoryId);
+        /** @var Redirect $resultRedirect */
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $id = $this->getRequest()->getParam('entity_id');
+        if ($id) {
+            try {
+                $this->categoryRepository->deleteById($id);
+                $this->messageManager->addSuccessMessage(__('You deleted the Category.'));
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Exception $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+                return $resultRedirect->setPath('*/*/edit', ['entity_id' => $id]);
             }
-            $this->messageManager->addSuccessMessage(__('Categories deleted successfully.'));
-        } catch (LocalizedException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-        } catch (\Exception $e) {
-            $this->messageManager->addExceptionMessage($e, __('Something went wrong while deleting the categories.'));
         }
-
-        return $this->_redirect('*/*/');
+        $this->messageManager->addErrorMessage(__('We can\'t find a Category to delete.'));
+        return $resultRedirect->setPath('*/*/');
     }
 }

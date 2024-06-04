@@ -1,0 +1,34 @@
+<?php
+/**
+ * @var \Bss\Faq\Block\Search\Search $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="bss-faq-collection">
+    <div id="faq-content" class="faq-content">
+        <div id="group">
+            <?php $faqSearch = $block->getSearchResults(); ?>
+            <?php foreach ($faqSearch as $faq): ?>
+                <div class="faq-accordion">
+                    <h3><?= $escaper->escapeHtml($faq->getTitle()) ?></h3>
+                    <div>
+                        <p><?= $block->filterOutputHtml($faq->getContent()) ?></p>
+                        <button>Like</button>
+                        <button>Dislike</button>
+                        <a href="#">Read more</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_Faq/js/faq": {
+                "page_type" : "scroll"
+            }
+        }
+    }
+</script>

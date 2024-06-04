@@ -1,0 +1,79 @@
+<?php
+/**
+ * @var \Bss\Faq\Block\Index\Index $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="bss-faq-collection">
+    <div class="faq-groups">
+        <?php $faqByCategory = $block->getFaqListByCategory(); ?>
+        <?php if (!empty($faqByCategory)): ?>
+            <?php $groupId = 1; ?>
+            <?php foreach ($faqByCategory as $categoryData): ?>
+                <?php $category = $categoryData['category']; ?>
+                <div class="faq-group">
+                    <div id="faq-group-image" class="faq-group-image">
+                        <a href="#group<?= $escaper->escapeHtml($groupId) ?>"
+                           class="group-link"
+                           groupId="<?= $escaper->escapeHtml($groupId) ?>">
+                            <img class="group-image" alt="group-image"
+                                 src="<?= $escaper->escapeHtml($block->getCategoryImageUrl($category->getIcon())) ?>" />
+                        </a>
+                    </div>
+                    <div class="faq-groupname">
+                        <a href="#group<?= $escaper->escapeHtml($groupId) ?>"
+                           class="group-link"
+                           groupId="<?= $escaper->escapeHtml($groupId) ?>">
+                            <?= $escaper->escapeHtml($category->getTitle()) ?>
+                        </a>
+                    </div>
+                </div>
+                <?php $groupId++; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="collspan-expand-block">
+        <a href="#" id="collapse-faqs">
+            <?= $escaper->escapeHtml(__('Collapse All')) ?>
+        </a> |
+        <a href="#" id="expand-faqs">
+            <?= $escaper->escapeHtml(__('Expand All')) ?>
+        </a>
+    </div>
+
+    <div id="faq-content" class="faq-content">
+        <?php if (!empty($faqByCategory)): ?>
+            <?php $groupId = 1; ?>
+            <?php foreach ($faqByCategory as $categoryData): ?>
+                <div id="group<?= $escaper->escapeHtml($groupId) ?>">
+                    <div class="group-title">
+                        <?= $escaper->escapeHtml($categoryData['category']->getTitle()) ?>
+                    </div>
+                    <div class="faq-accordion">
+                        <?php foreach ($categoryData['faqs'] as $faq): ?>
+                            <h3><?= $escaper->escapeHtml($faq->getTitle()) ?></h3>
+                            <div>
+                                <p><?= $block->filterOutputHtml($faq->getContent()) ?></p>
+                                <button>Like</button>
+                                <button>Dislike</button>
+                                <a href="#">Read more</a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php $groupId++; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_Faq/js/faq": {
+                    "page_type" : "scroll"
+                }
+        }
+    }
+</script>

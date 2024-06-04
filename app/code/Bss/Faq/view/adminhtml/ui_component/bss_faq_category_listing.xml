@@ -54,7 +54,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="bss_faq/category/delete"/>
+                        <item name="url" xsi:type="url" path="bss_faq/category/MassDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete Post</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
@@ -62,16 +62,16 @@
                     </item>
                 </argument>
             </action>
-            <action name="edit">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">edit</item>
-                        <item name="label" xsi:type="string" translate="true">Edit</item>
-                        <item name="url" xsi:type="url" path="bss_faq/category/edit"/>
-                    </item>
-                </argument>
-            </action>
         </massaction>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">bss_faq_category_listing</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="spinner_columns">

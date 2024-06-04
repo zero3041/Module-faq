@@ -19,13 +19,15 @@
              sortOrder="10"
              action="bss_faq/faq"
              resource="Bss_Faq::manage"
-             parent="Bss_Faq::Faq"/>
+             parent="Bss_Faq::Faq"
+        />
         <add id="Bss_FAQ::manage_categories"
              title="Manage FAQ Categories"
              module="Bss_Faq"
              sortOrder="99"
-             parent="Bss_Faq::Faq"
              action="bss_faq/category"
-             resource="Bss_Faq::category"/>
+             resource="Bss_Faq::category"
+             parent="Bss_Faq::Faq"
+        />
     </menu>
 </config>

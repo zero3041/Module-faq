@@ -2,8 +2,8 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">bss_faq_category_form.category_form_data_source</item>
-            <item name="deps" xsi:type="string">bss_faq_category_form.category_form_data_source</item>
+            <item name="provider" xsi:type="string">bss_faq_category_form.bss_faq_category_listing_data_source</item>
+            <item name="deps" xsi:type="string">bss_faq_category_form.bss_faq_category_listing_data_source</item>
         </item>
         <item name="label" translate="true" xsi:type="string">General Information</item>
         <item name="config" xsi:type="array">
@@ -13,15 +13,16 @@
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
             <item name="back" xsi:type="string">Bss\Faq\Block\Adminhtml\Category\Edit\BackButton</item>
+            <item name="reset" xsi:type="string">Bss\Faq\Block\Adminhtml\Category\Edit\ResetButton</item>
             <item name="delete" xsi:type="string">Bss\Faq\Block\Adminhtml\Category\Edit\DeleteButton</item>
             <item name="save" xsi:type="string">Bss\Faq\Block\Adminhtml\Category\Edit\SaveButton</item>
             <item name="save_and_continue" xsi:type="string">Bss\Faq\Block\Adminhtml\Category\Edit\SaveAndContinueButton</item>
         </item>
     </argument>
-    <dataSource name="category_form_data_source">
+    <dataSource name="bss_faq_category_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Bss\Faq\Model\Category\DataProvider</argument>
-            <argument name="name" xsi:type="string">category_form_data_source</argument>
+            <argument name="name" xsi:type="string">bss_faq_category_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">entity_id</argument>
             <argument name="data" xsi:type="array">

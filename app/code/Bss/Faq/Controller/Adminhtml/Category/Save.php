@@ -62,40 +62,47 @@ class Save extends Action implements HttpPostActionInterface
     {
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $data = $this->getRequest()->getPostValue();
 
-        if ($data) {
+        if ($data = $this->getRequest()->getPostValue()) {
+            $model = $this->categoryFactory->create();
             try {
-                if (isset($data['entity_id']) && !empty($data['entity_id'])) {
-                    $model = $this->categoryRepository->getById($data['entity_id']);
-                } else {
-                    $model = $this->categoryFactory->create();
+                if ($id = (int)$this->getRequest()->getParam('entity_id')) {
+                    $model = $this->categoryRepository->getById($id);
+                    if ($id != $model->getId()) {
+                        $this->messageManager->addErrorMessage(__('This Category no longer exists.'));
+                        return $resultRedirect->setPath('*/*/');
+                    }
                 }
+
                 $data = $this->_filterCategoryData($data);
-                $model->setData($data);
+                $model->addData($data);
                 $this->categoryRepository->save($model);
-                $this->messageManager->addSuccessMessage(__('Category saved successfully.'));
+                $this->messageManager->addSuccessMessage(__('You saved the Category.'));
+                $this->dataPersistor->clear('bss_faq_category');
+
+                if ($this->getRequest()->getParam('back')) {
+                    return $resultRedirect->setPath('*/*/edit', ['entity_id' => $model->getId()]);
+                }
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage(
                     $e,
-                    __('Something went wrong while saving the category.')
+                    __('Something went wrong while saving the Category.')
                 );
             }
 
             $this->dataPersistor->set('bss_faq_category', $data);
-            if (isset($data['entity_id']) && !empty($data['entity_id'])) {
-                return $resultRedirect->setPath('*/*/edit', ['entity_id' => $data['entity_id']]);
-            } else {
-                return $resultRedirect->setPath('*/*/new');
-            }
+            return $resultRedirect->setPath(
+                '*/*/edit',
+                [
+                    'entity_id' => $this->getRequest()->getParam('entity_id')
+                ]
+            );
         }
-
         return $resultRedirect->setPath('*/*/');
     }
-
     /**
      * Filter data img
      *

@@ -4,6 +4,9 @@
     <preference for="Bss\Faq\Api\CategoryRepositoryInterface" type="Bss\Faq\Model\CategoryRepository" />
     <preference for="Bss\Faq\Api\Data\CategoryInterface" type="Bss\Faq\Model\Category" />
     <preference for="Bss\Faq\Api\Data\CategorySearchResultsInterface" type="Bss\Faq\Model\Category\CategorySearchResults" />
+    <preference for="Bss\Faq\Api\FaqRepositoryInterface" type="Bss\Faq\Model\FaqRepository" />
+    <preference for="Bss\Faq\Api\Data\FaqInterface" type="Bss\Faq\Model\Faq" />
+    <preference for="Bss\Faq\Api\Data\FaqSearchResultsInterface" type="Bss\Faq\Model\Faq\FaqSearchResults" />
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
@@ -29,4 +32,9 @@
             <argument name="mainTable" xsi:type="string">faq_manage</argument>
         </arguments>
     </virtualType>
+    <type name="Bss\Faq\Controller\Adminhtml\Faq\Save">
+        <arguments>
+            <argument name="authSession" xsi:type="object">Magento\Backend\Model\Auth\Session\Proxy</argument>
+        </arguments>
+    </type>
 </config>
