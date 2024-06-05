@@ -49,7 +49,7 @@ class Index implements HttpGetActionInterface
     {
         $resultPage = $this->resultPageFactory->create();
         if ($this->helper->isEnable()) {
-            $pageMainTitle = $resultPage->getLayout()->getBlock('page.main.title');
+            $pageMainTitle = $resultPage->getLayout()->getBlock('page.main');
             $pageTitle = $this->helper->getConfig(DefaultConfig::CONFIG_PATH_PAGE_TITLE);
 
             if ($pageMainTitle && $pageMainTitle instanceof HtmlTitle) {

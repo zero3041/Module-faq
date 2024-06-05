@@ -9,7 +9,7 @@
         <column xsi:type="int" name="like" nullable="true"  comment="Titled"/>
         <column xsi:type="int" name="dislike" nullable="true"  comment="Disliked"/>
         <column xsi:type="varchar" name="create_by" nullable="true" length="255" comment="Create By"/>
-        <column xsi:type="smallint" name="status" unsigned="true" nullable="true" identity="false" default="1" comment="Is Enabled"/>
+        <column xsi:type="boolean" name="status" unsigned="true" nullable="true" default="true" comment="Is Enabled"/>
         <column xsi:type="int" name="sortorder" unsigned="true" nullable="true" identity="false" default="0" comment="Sort Order"/>
         <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
         <column xsi:type="datetime" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Modified at"/>
@@ -24,7 +24,7 @@
     </table>
     <table name="faq_category" resource="default" engine="innodb" comment="Bss FAQ category">
         <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
-        <column xsi:type="smallint" name="status" unsigned="true" nullable="true" identity="false" default="1" comment="Is Enabled"/>
+        <column xsi:type="boolean" name="status" unsigned="true" nullable="true" default="true" comment="Is Enabled"/>
         <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
         <column xsi:type="varchar" name="icon" nullable="true" length="255" comment="Image"/>
         <column xsi:type="int" name="sortorder" unsigned="true" nullable="true" identity="false" default="0" comment="Sort Order"/>

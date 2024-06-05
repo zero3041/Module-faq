@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Bss\Faq\Block\Index\Index" name="faq.search.form" template="faq_search_form.phtml" />
+            <block class="Bss\Faq\Block\Search\SearchForm" name="faq.search.form" template="Bss_Faq::faq_search_form.phtml" />
             <block class="Bss\Faq\Block\Index\Index" name="faq.main" template="faq_main.phtml" />
         </referenceContainer>
     </body>

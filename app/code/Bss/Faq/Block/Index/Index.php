@@ -110,4 +110,14 @@ class Index extends Template
         return $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) .
             DefaultConfig::ICON_TMP_PATH . $icon;
     }
+    /**
+     * Get url detail faq
+     *
+     * @param int $faqId
+     * @return string
+     */
+    public function getFaqDetailUrl(int $faqId): string
+    {
+        return $this->getUrl('faq/detail', ['faq_id' => $faqId]);
+    }
 }

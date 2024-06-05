@@ -80,4 +80,15 @@ class Search extends Template
         }
         return $output;
     }
+
+    /**
+     * Get url detail faq
+     *
+     * @param int $faqId
+     * @return string
+     */
+    public function getFaqDetailUrl(int $faqId): string
+    {
+        return $this->getUrl('faq/detail', ['faq_id' => $faqId]);
+    }
 }

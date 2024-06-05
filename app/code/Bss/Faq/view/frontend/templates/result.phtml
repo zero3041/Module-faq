@@ -13,9 +13,7 @@
                     <h3><?= $escaper->escapeHtml($faq->getTitle()) ?></h3>
                     <div>
                         <p><?= $block->filterOutputHtml($faq->getContent()) ?></p>
-                        <button>Like</button>
-                        <button>Dislike</button>
-                        <a href="#">Read more</a>
+                        <a href="<?= $escaper->escapeHtml($block->getFaqDetailUrl($faq->getId())) ?>">Read more</a>
                     </div>
                 </div>
             <?php endforeach; ?>

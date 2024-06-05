@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \Bss\Faq\Block\Search\SearchForm $block
  * @var \Magento\Framework\Escaper $escaper
@@ -7,7 +8,7 @@
 <div class="faq-search-form">
     <div class="content">
         <form class="form"
-              action="<?= $escaper->escapeHtml(__("https://magento247.test/faq/search")) ?>"
+              action="<?= $escaper->escapeHtml($block->getFormAction()) ?>"
               id="faq-search-form"
               method="get"
               data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>"
