@@ -27,7 +27,6 @@
         </div>
         <p class="content"><?= $block->filterOutputHtml($faq->getContent()) ?></p>
         <div class="feedback" id="feedback">
-            <div class="hidden" id="BASE_URL"><?= $escaper->escapeHtml($block->getAjaxUrl()) ?></div>
             <div class="hidden" id="message"><?=
                 $escaper->escapeHtml('Glad to hear it — Thanks for the feedback'); ?></div>
             <button class="btn" id="btn-like">
@@ -42,3 +41,12 @@
     </div>
 </div>
 
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "faq-detail": {
+                "baseUrl" : "<?= $escaper->escapeHtml($block->getAjaxUrl()) ?>"
+            }
+        }
+    }
+</script>

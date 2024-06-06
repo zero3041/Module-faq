@@ -8,7 +8,7 @@ define([
         options: {
             faqCollectionSelector: '.bss-faq-collection',
             faqLoaderSelector: '.bss-faq-loader',
-            groupLinkSelector: '.group-link',
+            groupLinkSelector: '.group-links',
             pageTypeScroll: 'scroll',
             uiAccordionContentSelector: '.ui-accordion-content',
             uiAccordionHeaderSelector: '.ui-accordion-header',

@@ -1,14 +1,12 @@
-require([
+define([
     'jquery',
-    'jquery/ui',
-    'jquery/validate',
     'mage/translate'
 ], function ($) {
     'use strict';
-    $(document).ready(function () {
+    return function (config) {
         function addFeedBack(type)
         {
-            var BASE_URL = $('#feedback #BASE_URL').text(),
+            var BASE_URL = config.baseUrl,
                 selector = null;
 
             if (type === 1) {
@@ -35,5 +33,5 @@ require([
         }
         addFeedBack(1);
         addFeedBack(0);
-    });
+    };
 });

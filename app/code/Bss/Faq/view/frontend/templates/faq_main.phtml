@@ -13,17 +13,17 @@
                 <?php $category = $categoryData['category']; ?>
                 <div class="faq-group">
                     <div id="faq-group-image" class="faq-group-image">
-                        <a href="#group<?= $escaper->escapeHtml($groupId) ?>"
+                        <a href="<?= $escaper->escapeHtml($block->getCategoryUrl($category->getId())) ?>"
                            class="group-link"
-                           groupId="<?= $escaper->escapeHtml($groupId) ?>">
+                           >
                             <img class="group-image" alt="group-image"
                                  src="<?= $escaper->escapeHtml($block->getCategoryImageUrl($category->getIcon())) ?>" />
                         </a>
                     </div>
                     <div class="faq-groupname">
-                        <a href="#group<?= $escaper->escapeHtml($groupId) ?>"
+                        <a href="<?= $escaper->escapeHtml($block->getCategoryUrl($category->getId())) ?>"
                            class="group-link"
-                           groupId="<?= $escaper->escapeHtml($groupId) ?>">
+                           >
                             <?= $escaper->escapeHtml($category->getTitle()) ?>
                         </a>
                     </div>

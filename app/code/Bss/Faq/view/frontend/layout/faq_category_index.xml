@@ -5,8 +5,8 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Bss\Faq\Block\Search\SearchForm" name="faq.search.form" template="Bss_Faq::faq_search_form.phtml" />
-            <block class="Bss\Faq\Block\Index\Index" name="faq.main" template="Bss_Faq::faq_main.phtml" />
+            <block class="Bss\Faq\Block\Category\Category" name="faq.category" template="Bss_Faq::category.phtml" />
         </referenceContainer>
     </body>
 </page>
+

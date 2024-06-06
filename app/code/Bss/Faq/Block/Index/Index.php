@@ -73,7 +73,7 @@ class Index extends Template
             $faqCollection = $this->faqManageCollectionFactory->create()
                 ->addFieldToFilter('category_id', $category->getId())
                 ->addFieldToFilter('status', 1)
-                ->setOrder('sortorder', 'ASC');
+                ->setOrder('sortorder', 'ASC')->setPageSize(3)->setCurPage(1);
             $faqByCategory[$category->getTitle()] = [
                 'category' => $category,
                 'faqs' => $faqCollection
@@ -119,5 +119,16 @@ class Index extends Template
     public function getFaqDetailUrl(int $faqId): string
     {
         return $this->getUrl('faq/detail', ['faq_id' => $faqId]);
+    }
+
+    /**
+     * Get url category
+     *
+     * @param int $faqId
+     * @return string
+     */
+    public function getCategoryUrl(int $faqId): string
+    {
+        return $this->getUrl('faq/category', ['c_id' => $faqId]);
     }
 }

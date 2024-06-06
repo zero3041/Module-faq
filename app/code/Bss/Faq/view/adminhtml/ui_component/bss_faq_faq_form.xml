@@ -91,51 +91,6 @@
                 </item>
             </argument>
         </field>
-        <field name="view">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">View</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">view</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">view</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="like">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">Like</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">like</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">like</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="dislike">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">DisLike</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">dislike</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">dislike</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
         <field name="status">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
