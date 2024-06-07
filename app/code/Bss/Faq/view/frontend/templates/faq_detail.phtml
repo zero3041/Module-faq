@@ -1,0 +1,53 @@
+<?php
+/**
+ * @var \Bss\Faq\Block\Detail\Detail $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="faq-content">
+    <?php $faq = $block->getFaqData()?>
+    <h1><?= $escaper->escapeHtml($faq->getTitle()) ?></h1>
+    <div class="details">
+        <div class="created-by">
+            <span class="author">
+                <span class="faq-iconuser"></span>
+                <?= $escaper->escapeHtml(__('Created by') . ' ' . $faq->getCreatedBy() . ' |') ?>
+            </span>
+            <span class="calendar">
+                <span class="faq-iconcalendar"></span>
+                <?= $escaper->escapeHtml($faq->getCreatedAt() . ' |')?>
+            </span>
+            <span class="category">
+                <span class="faq-iconfolder"></span>
+                <?= $escaper->escapeHtml($block->getFaqCategoryTitle($faq->getCategoryId())) . ' |' ?>
+            </span>
+            <span class="viewed">
+                <span class="faq-iconeye"></span>
+                <?= $escaper->escapeHtml($faq->getView()) ?>
+            </span>
+        </div>
+        <p class="content"><?= $block->filterOutputHtml($faq->getContent()) ?></p>
+        <div class="feedback" id="feedback">
+            <div class="hidden showfeedback" id="message"><?=
+                $escaper->escapeHtml('Glad to hear it — Thanks for the feedback'); ?></div>
+            <?php if (!$block->getCatalogSession()->getFeedback()): ?>
+                <button class="btn" id="btn-like">
+                    <span class="faq-iconhappy"></span>
+                </button>
+                <button class="btn" id="btn-dislike">
+                    <span class="faq-iconangry"></span>
+                </button>
+            <?php endif ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "faq-detail": {
+                "baseUrl" : "<?= $escaper->escapeHtml($block->getAjaxUrl()) ?>"
+            }
+        }
+    }
+</script>
